@@ -6,8 +6,8 @@
   (message "Loading Emacs...done (%.3fs)"
            (float-time (time-subtract before-user-init-time
                                       before-init-time)))
-  (setq user-init-file (or load-file-name buffer-file-name))
-  (setq user-emacs-directory (file-name-directory user-init-file))
+;;  (setq user-init-file (or load-file-name buffer-file-name))
+;;  (setq user-emacs-directory (file-name-directory user-init-file))
   (message "Loading %s..." user-init-file)
   (setq package-enable-at-startup nil)
   ;; (package-initialize)
@@ -39,7 +39,9 @@
   (setq auto-compile-mode-line-counter            t)
   (setq auto-compile-source-recreate-deletes-dest t)
   (setq auto-compile-toggle-deletes-nonlib-dest   t)
-  (setq auto-compile-update-autoloads             t))
+  (setq auto-compile-update-autoloads             t)
+  (add-hook 'auto-compile-inhibit-compile-hook
+            'auto-compile-inhibit-compile-detached-git-head))
 
 (use-package epkg
   :defer t
@@ -98,7 +100,8 @@
 (use-package magit
   :defer t
   :bind (("C-x g"   . magit-status)
-         ("C-x M-g" . magit-dispatch))
+         ("s-v"     . magit-status)
+         ("C-x M-g" . magit-dispatch-popup))
   :config
   (magit-add-section-hook 'magit-status-sections-hook
                           'magit-insert-modules
@@ -133,7 +136,9 @@
   :config (column-number-mode))
 
 (progn ;    `text-mode'
-  (add-hook 'text-mode-hook #'indicate-buffer-boundaries-left))
+  (add-hook 'text-mode-hook #'indicate-buffer-boundaries-left)
+  ;; determine if we want to use #'toggle-word-wrap
+)
 
 (use-package tramp
   :defer t

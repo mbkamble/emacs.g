@@ -1,8 +1,10 @@
 ;;; mbkamble.el --- personal configuration      -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020 Milind Kamble
+;; Copyright (C) 2019  Samuel Barreto
 
 ;; Author: Milind Kamble <milindbkamble@gmail.com>
+;; Original Author: Samuel Barreto <samuel.barreto8@gmail.com>
 ;; Keywords: config
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -32,17 +34,17 @@
   :version 1.0
   :prefix "mbk-")
 
-(defcustom mbk-font "Victor Mono SemiBold 12"
+(defcustom mbk-font "Victor Mono SemiBold"
   "Font for coding situations."
   :group 'mbk
   :type 'string)
 
-(defcustom mbk-variable-pitch-font "Victor Mono SemiBold 12"
+(defcustom mbk-variable-pitch-font "Source Sans Pro"
   "Font for text"
   :group 'mbk
   :type 'string)
 
-(defcustom mbk-theme 'leuven
+(defcustom mbk-theme 'poet
   "Default theme for my config"
   :group 'mbk
   :type 'theme)
@@ -163,9 +165,10 @@ Add a lamdba containing BODY to hook HOOK."
      'variable-pitch
      nil
      :family mbk-variable-pitch-font
-     :height 120)
-    (remove-hook 'text-mode-hook
-      (variable-pitch-mode 1)))
+     :height 120
+     :weight 'light)
+    (add-hook 'text-mode-hook
+      (lambda () (variable-pitch-mode 1))))
 
   (when window-system
     ;; increase space between lines

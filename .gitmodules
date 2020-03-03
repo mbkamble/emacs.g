@@ -45,6 +45,9 @@
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git
+[submodule "poet-theme"]
+	path = lib/poet-theme
+	url = git@github.com:kunalb/poet.git
 [submodule "transient"]
 	path = lib/transient
 	url = git@github.com:magit/transient.git

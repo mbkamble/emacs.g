@@ -176,12 +176,66 @@ Add a lamdba containing BODY to hook HOOK."
     (add-to-list 'default-frame-alist `(:height . 120))
     (set-face-attribute 'default nil :font mbk-font :height 120)))
 
+(defun mbk--defaults! ()
+  ;; disable warnings when opening file or directory with
+  ;; local variables set
+  (setq-default enable-local-eval t)
+  (setq-default enable-local-variables :safe)
+  (setq-default enable-dir-local-variables t)
+  (setq
+   version-control t                      ; enable version control
+   vc-make-backup-files t                 ; backups file even when under vc
+   vc-follow-symlinks t                   ; follow symlinks
+   ring-bell-function 'ignore             ; mute the bell
+   default-fill-column 72
+   initial-scratch-message ""
+   select-enable-clipboard t              ; Merge system's and Emacs' clipboard
+   help-window-select t                   ; focus help window when opened
+   ;; tab-width does not influence indentation step
+   tab-width 4                            ; num spaces for tab char display
+   auto-window-vscroll nil                ; Lighten vertical scroll
+   confirm-kill-emacs 'yes-or-no-p        ; Confirm before exiting Emacs
+   cursor-in-non-selected-windows nil     ; Hide the cursor in inactive windows
+   display-time-format "%H:%M"            ; Format the time string
+   sentence-end-double-space nil          ; End a sentence after a dot and a space
+
+   text-scale-mode-step 1.05              ; finer grain of text increasing
+   epa-armor t
+   epa-file-name-regexp "\\.\\(gpg\\|asc\\)$"
+   epa-pinentry-mode 'loopback            ; use minibuffer reading passphrase
+   )
+
+  (epa-file-name-regexp-update)
+
+  (setq-default indent-tabs-mode nil
+		        tab-width 4)
+
+
+
+  (prefer-coding-system 'utf-8)           ; utf-8 is default coding system
+
+  (defalias 'yes-or-no-p 'y-or-n-p)       ; replace yes-no with y-n
+  (defalias 'kill-frame #'delete-frame)
+  (defalias 'kill-other-frames #'delete-other-frames)
+  (defalias 'kill-window #'delete-window)
+  (defalias 'kill-other-windows #'delete-other-windows)
+
+  (save-place-mode)                       ; remember location in files
+  (delete-selection-mode 1)               ; replace highlighted text with type
+  (add-hook 'before-save-hook
+            'delete-trailing-whitespace)  ; self explanatory
+
+  (add-hook! 'after-save-hook
+    (executable-make-buffer-file-executable-if-script-p))
+  )
+
 ;;;###autoload
 (defun mbk-initialize! ()
   (interactive)
   (mbk--initialize-frame!)
   (mbk--windows!)
   (mbk--appearances!)
+  (mbk--defaults!)
   )
 
 ;; reduce text size in help side-window

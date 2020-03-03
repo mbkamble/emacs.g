@@ -27,3 +27,10 @@
 (use-package mbk-defaults
   :load-path "lisp"
   :hook (after-init . mbk-initialize!))
+
+(use-package no-littering
+  :commands (no-littering-expand-var-file-name
+             no-littering-expand-etc-file-name)
+  :config
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory))

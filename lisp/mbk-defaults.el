@@ -203,6 +203,12 @@ Add a lamdba containing BODY to hook HOOK."
    epa-armor t
    epa-file-name-regexp "\\.\\(gpg\\|asc\\)$"
    epa-pinentry-mode 'loopback            ; use minibuffer reading passphrase
+   auto-save-file-name-transforms         ; transform names of saved files
+   `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
+   backup-directory-alist                 ; store all backup and autosave files in "backups"
+   `((".*" . ,(no-littering-expand-var-file-name "backups/")))
+   custom-file (no-littering-expand-etc-file-name "custom.el")
+
    )
 
   (epa-file-name-regexp-update)

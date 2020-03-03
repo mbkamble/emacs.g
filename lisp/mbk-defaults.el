@@ -34,22 +34,23 @@
   :version 1.0
   :prefix "mbk-")
 
-(defcustom mbk-font "Victor Mono SemiBold"
+(defcustom mbk-font "Victor Mono" ;; "Iosevka"
   "Font for coding situations."
   :group 'mbk
   :type 'string)
 
-(defcustom mbk-variable-pitch-font "Source Sans Pro"
+;; see https://zzamboni.org/post/beautifying-org-mode-in-emacs/
+(defcustom mbk-variable-pitch-font  "Source Sans Pro"
   "Font for text"
   :group 'mbk
   :type 'string)
 
-(defcustom mbk-theme 'poet
+(defcustom mbk-theme 'poet-dark
   "Default theme for my config"
   :group 'mbk
   :type 'theme)
 
-(defcustom mbk-use-variable-pitch-font t
+(defcustom mbk-use-variable-pitch-font nil
   "Whether to use a variable pitch font for non-coding situations or not.
 
 Defaults to t."
@@ -155,11 +156,7 @@ Add a lamdba containing BODY to hook HOOK."
            (preserve-size . (nil . t)) ,my-window--parameters))))
 
 (defun mbk--appearances! ()
-;;   "Set the default theme and fonts"
-;;   (unless (eq sam-theme 'default)
-;;     (load-theme sam-theme t))
-
-
+  "Set the default theme and fonts"
   (when mbk-use-variable-pitch-font
     (set-face-attribute
      'variable-pitch
@@ -177,7 +174,12 @@ Add a lamdba containing BODY to hook HOOK."
     ;; change default font for current frame
     (add-to-list 'default-frame-alist `(font . ,mbk-font))
     (add-to-list 'default-frame-alist `(:height . 120))
-    (set-face-attribute 'default nil :font mbk-font :height 120)))
+    (set-face-attribute 'default nil :font mbk-font :height 120)
+    (set-face-attribute 'fixed-pitch nil :font mbk-font :height 120)
+    )
+  (unless (eq mbk-theme 'default)
+    (load-theme mbk-theme t))
+  )
 
 (defun mbk--defaults! ()
   ;; disable warnings when opening file or directory with

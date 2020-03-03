@@ -51,14 +51,13 @@ emacs.
 See also `mbk-use-theme'."
   (declare (indent 0))
   `(progn
-     (setq custom-theme-load-path nil)  ;; disable all default themes
+     ;; (setq custom-theme-load-path nil)  ;; disable all default themes
      ,@(mapcar
         (lambda (x) `(mbk-use-theme ,@x))
         (mbk--group themes 2))))
 
 (mbk-use-themes
   ;; solarized "~/.emacs.d/lib/solarized-theme/"
-  zenburn-theme nil ;; use system installed version
   poet (concat user-emacs-directory "lib/poet-theme")
   ;; spacemacs-theme "~/.emacs.d/lib/spacemacs-theme/"
   ;; doom-theme "~/.emacs.d/lib/doom-themes/themes/"

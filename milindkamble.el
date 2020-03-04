@@ -30,6 +30,23 @@
   :load-path "lisp"
   :hook (after-init . mbk-initialize!))
 
+;; generic and powerful keybinding
+(require 'general)
+
+;; use key-chord as
+(use-package key-chord
+  :commands (key-chord-mode
+             key-chord-define-global)
+  :custom
+  (key-chord-two-key-delay 0.2)
+  :general
+  :init
+  (key-chord-mode 1)
+  (general-define-key
+   (general-chord ".,") 'counsel-M-x
+   (general-chord ",.") 'counsel-M-x
+   ))
+
 (use-package no-littering
   :commands (no-littering-expand-var-file-name
              no-littering-expand-etc-file-name)

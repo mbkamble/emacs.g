@@ -46,31 +46,19 @@
 (use-package blackout
   :demand t)
 
-;; Package `selectrum' is an incremental completion and narrowing
-;; framework. Like Ivy and Helm, which it improves on, Selectrum
-;; provides a user interface for choosing from a list of options by
-;; typing a query to narrow the list, and then selecting one of the
-;; remaining candidates. This offers a significant improvement over
-;; the default Emacs interface for candidate selection.
-(use-package selectrum
-  :defer t
-  :init
-  (selectrum-mode +1))    ;; This doesn't actually load Selectrum.
-
-;; Package `prescient' is a library for intelligent sorting and
-;; filtering in various contexts.
-(use-package prescient
+(use-package ivy
+  :blackout t
+  :commands (ivy-mode)
+  :bind* (("s-t" . ivy-switch-buffer)
+          ("s-<backspace>" . ivy-switch-buffer)
+          :map ivy-mode-map
+          ("C-'" . ivy-avy))
+  :custom
+  (ivy-display-style 'fancy)
+  (ivy-count-format "(%d/%d) ")
+  (ivy-use-virtual-buffers t)
   :config
-  ;; Remember usage statistics across Emacs sessions.
-  (prescient-persist-mode +1))
-
-;; Package `selectrum-prescient' provides intelligent sorting and
-;; filtering for candidates in Selectrum menus.
-(use-package selectrum-prescient
-  :demand t
-  :after selectrum
-  :config
-  (selectrum-prescient-mode +1))
+  (ivy-mode))
 
 (use-package mbk  ;; load lisp/mbk.el
   :load-path "lisp")

@@ -45,9 +45,15 @@
 [submodule "git-modes"]
 	path = lib/git-modes
 	url = git@github.com:magit/git-modes.git
+[submodule "hercules"]
+	path = lib/hercules
+	url = git@gitlab.com:jjzmajic/hercules.el.git
 [submodule "ht"]
 	path = lib/ht
 	url = git@github.com:Wilfred/ht.el.git
+[submodule "hydra"]
+	path = lib/hydra
+	url = git@github.com:abo-abo/hydra.git
 [submodule "ivy"]
 	path = lib/ivy
 	url = git@github.com:abo-abo/swiper.git

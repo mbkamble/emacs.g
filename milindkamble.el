@@ -117,5 +117,12 @@
       "M-SPC g" "grep"
       "M-SPC M-s" "occur"))
 
+(use-package hydra
+  :demand t)
+(use-package hercules
+  :after hydra
+  :demand t
+  :commands (hercules-def))
+
 (use-package mbk  ;; load lisp/mbk.el
   :load-path "lisp")

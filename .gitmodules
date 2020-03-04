@@ -51,12 +51,21 @@
 [submodule "no-littering"]
 	path = lib/no-littering
 	url = git@github.com:emacscollective/no-littering.git
+[submodule "objed"]
+	path = lib/objed
+	url = git@github.com:clemera/objed.git
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git
 [submodule "poet-theme"]
 	path = lib/poet-theme
 	url = git@github.com:kunalb/poet.git
+[submodule "prescient"]
+	path = lib/prescient
+	url = git@github.com:raxod502/prescient.el.git
+[submodule "selectrum"]
+	path = lib/selectrum
+	url = git@github.com:raxod502/selectrum.git
 [submodule "transient"]
 	path = lib/transient
 	url = git@github.com:magit/transient.git

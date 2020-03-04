@@ -40,5 +40,37 @@
 (use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))
 
+(use-package objed
+  :defer t)
+
+(use-package blackout
+  :demand t)
+
+;; Package `selectrum' is an incremental completion and narrowing
+;; framework. Like Ivy and Helm, which it improves on, Selectrum
+;; provides a user interface for choosing from a list of options by
+;; typing a query to narrow the list, and then selecting one of the
+;; remaining candidates. This offers a significant improvement over
+;; the default Emacs interface for candidate selection.
+(use-package selectrum
+  :defer t
+  :init
+  (selectrum-mode +1))    ;; This doesn't actually load Selectrum.
+
+;; Package `prescient' is a library for intelligent sorting and
+;; filtering in various contexts.
+(use-package prescient
+  :config
+  ;; Remember usage statistics across Emacs sessions.
+  (prescient-persist-mode +1))
+
+;; Package `selectrum-prescient' provides intelligent sorting and
+;; filtering for candidates in Selectrum menus.
+(use-package selectrum-prescient
+  :demand t
+  :after selectrum
+  :config
+  (selectrum-prescient-mode +1))
+
 (use-package mbk  ;; load lisp/mbk.el
   :load-path "lisp")

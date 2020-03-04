@@ -30,6 +30,11 @@
   :load-path "lisp"
   :hook (after-init . mbk-initialize!))
 
+(use-package f :defer t)   ;; file manipulation
+(use-package s :defer t)   ;; string manipulation
+(use-package ht :defer t)  ;; hash table manipulation
+(use-package ts :defer t)  ;; time manipulation
+
 ;; generic and powerful keybinding
 (require 'general)
 

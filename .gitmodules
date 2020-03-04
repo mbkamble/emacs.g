@@ -82,6 +82,9 @@
 [submodule "use-package"]
 	path = lib/use-package
 	url = git@github.com:jwiegley/use-package.git
+[submodule "which-key"]
+	path = lib/which-key
+	url = git@github.com:justbur/emacs-which-key.git
 [submodule "winum"]
 	path = lib/winum
 	url = git@github.com:deb0ch/emacs-winum.git

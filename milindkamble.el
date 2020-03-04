@@ -60,5 +60,40 @@
   :config
   (ivy-mode))
 
+(use-package which-key
+    :defer 1
+    :blackout ;; prevent mode display in mode-line
+    :commands (which-key-mode
+               which-key-setup-side-window-right-bottom
+               which-key-add-key-based-replacements)
+    :custom
+    ;; simple then alphabetic order.
+    (which-key-sort-order 'which-key-key-order)
+    (which-key-popup-type 'side-window)
+    (which-key-side-window-max-height 0.3)
+    (which-key-side-window-max-width 0.5)
+    (which-key-idle-delay 0.3)
+    (which-key-min-display-lines 7)
+    :config
+    (which-key-mode +1)
+    (which-key-setup-side-window-right-bottom)
+    ;; key description for C-x
+    (which-key-add-key-based-replacements
+      "C-x RET" "coding system -input"
+      "C-x 4"   "Other Window"
+      "C-x 5"   "Frame"
+      "C-x 6"   "2C"
+      "C-x @"   "event"
+      "C-x 8"   "special char"
+      "C-x a"   "abbrev"
+      "C-x n"   "narrow"
+      "C-x r"   "rectangle"
+      "C-x v"   "version control"
+      "C-c &"   "yas"
+      "C-c @"   "hide-show"
+      "M-SPC h" "info"
+      "M-SPC g" "grep"
+      "M-SPC M-s" "occur"))
+
 (use-package mbk  ;; load lisp/mbk.el
   :load-path "lisp")

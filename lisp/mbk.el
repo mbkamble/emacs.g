@@ -25,5 +25,5 @@
 ;;; Code:
 
 (require 'mbk-themes)
-
+(require 'mbk-org)
 (provide 'mbk)

@@ -78,9 +78,30 @@
 [submodule "objed"]
 	path = lib/objed
 	url = git@github.com:clemera/objed.git
+[submodule "org"]
+	path = lib/org
+	url = git@code.orgmode.org:bzg/org-mode.git
+[submodule "org-bullets"]
+	path = lib/org-bullets
+	url = git@github.com:emacsorphanage/org-bullets.git
+[submodule "org-download"]
+	path = lib/org-download
+	url = git@github.com:abo-abo/org-download.git
+[submodule "org-journal"]
+	path = lib/org-journal
+	url = git@github.com:bastibe/org-journal.git
+[submodule "org-mind-map"]
+	path = lib/org-mind-map
+	url = git@github.com:theodorewiles/org-mind-map.git
+[submodule "org-web-tools"]
+	path = lib/org-web-tools
+	url = git@github.com:alphapapa/org-web-tools.git
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git
+[submodule "plain-org-wiki"]
+	path = lib/plain-org-wiki
+	url = git@github.com:abo-abo/plain-org-wiki.git
 [submodule "poet-theme"]
 	path = lib/poet-theme
 	url = git@github.com:kunalb/poet.git

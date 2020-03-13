@@ -76,6 +76,7 @@
 	path = lib/no-littering
 	url = git@github.com:emacscollective/no-littering.git
 [submodule "objed"]
+	disabled = true
 	path = lib/objed
 	url = git@github.com:clemera/objed.git
 [submodule "org"]
@@ -106,12 +107,14 @@
 	path = lib/poet-theme
 	url = git@github.com:kunalb/poet.git
 [submodule "prescient"]
+	disabled = true
 	path = lib/prescient
 	url = git@github.com:raxod502/prescient.el.git
 [submodule "s"]
 	path = lib/s
 	url = git@github.com:magnars/s.el.git
 [submodule "selectrum"]
+	disabled = true
 	path = lib/selectrum
 	url = git@github.com:raxod502/selectrum.git
 [submodule "transient"]

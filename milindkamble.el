@@ -62,7 +62,7 @@
 (use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))
 
-(use-package objed
+'(use-package objed
   :defer t)
 
 (use-package blackout
@@ -79,8 +79,51 @@
   (ivy-display-style 'fancy)
   (ivy-count-format "(%d/%d) ")
   (ivy-use-virtual-buffers t)
+  (ivy-re-builders-alist
+      '((read-file-name-internal . ivy--regex-fuzzy) ;; automatic .* between each character
+        (t . ivy--regex-plus))) ;; Spaces are wildcards, '!' negates match
   :config
   (ivy-mode))
+
+(use-package swiper
+  :bind* (:map swiper-isearch-map
+          ("C-s" . #'ivy-next-line)
+          ("C-r" . #'ivy-previous-line)
+          ("C-t" . #'ivy-yank-word)
+          :map global-map
+          ("M-s" . #'swiper-isearch)))
+
+(use-package counsel
+  :commands (counsel-load-theme
+             counsel-bookmark
+             counsel-yank-pop)
+  :bind* (
+          ("C-c C-/" . counsel-rg)
+          ("M-x" . counsel-M-x))
+  :config
+  (setq counsel-find-file-ignore-regexp
+        dired-garbage-files-regexp)
+  (setq counsel-find-file-at-point t)
+
+  (defun counsel-font-headings ()
+    "Change font of variable pitch."
+    (interactive)
+    (ivy-read
+     "Chose font :"
+     (font-family-list)
+     :caller 'counsel-font-headings
+     :action
+      (lambda (x)
+        (set-face-attribute 'variable-pitch nil
+                            :family x :height 120))))
+
+  (defun counsel-font ()
+    "Change font of current frame"
+    (interactive)
+    (ivy-read "Chose font :"
+              (font-family-list)
+              :caller 'counsel-font
+              :action (lambda (x) (set-frame-font x)))))
 
 (use-package which-key
     :defer 1

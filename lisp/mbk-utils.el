@@ -149,4 +149,11 @@ line."
     (with-current-buffer standard-output ;; temp buffer
       (setq help-xref-stack-item (list #'my-describe-keymap keymap)))))
 
+;; use counsel-find-library to visit source file for any feature/library
+(defun my-find-library-name (arg)
+  "Show the full path of package or library"
+  (interactive "Mpackage/library: ")
+  (message (find-library-name arg)))
+
+
 (provide 'mbk-utils)

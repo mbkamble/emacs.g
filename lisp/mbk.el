@@ -26,4 +26,5 @@
 
 (require 'mbk-themes)
 (require 'mbk-org)
+(require 'mbk-bindings)
 (provide 'mbk)

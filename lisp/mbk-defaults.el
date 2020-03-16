@@ -165,7 +165,7 @@ Add a lamdba containing BODY to hook HOOK."
      :height 120
      :weight 'light)
     (add-hook 'text-mode-hook
-      (lambda () (variable-pitch-mode 1))))
+              (lambda () (variable-pitch-mode 1))))
 
   (when window-system
     ;; increase space between lines
@@ -213,7 +213,7 @@ Add a lamdba containing BODY to hook HOOK."
    backup-directory-alist                 ; store all backup and autosave files in "backups"
    `((".*" . ,(no-littering-expand-var-file-name "backups/")))
    custom-file (no-littering-expand-etc-file-name "custom.el")
-
+   recentf-max-saved-items 200
    )
 
   (epa-file-name-regexp-update)
@@ -247,6 +247,8 @@ Add a lamdba containing BODY to hook HOOK."
   (mbk--windows!)
   (mbk--appearances!)
   (mbk--defaults!)
+  (when (file-exists-p custom-file)
+    (load custom-file))
   )
 
 ;; reduce text size in help side-window

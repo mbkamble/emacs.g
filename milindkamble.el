@@ -26,21 +26,21 @@
 
 ;;; Code:
 
+;;;; personal defaults
 (use-package mbk-defaults
   :load-path "lisp"
   :hook (after-init . mbk-initialize!))
 
+;;;; essential utils
 (use-package f :defer t)   ;; file manipulation
 (use-package s :defer t)   ;; string manipulation
 (use-package ht :defer t)  ;; hash table manipulation
 (use-package ts :defer t)  ;; time manipulation
 (use-package seq)          ;; sequence utils
+(require 'general)         ;; generic and powerful keybinding
 
-;; generic and powerful keybinding
-(require 'general)
-
-;; use key-chord for setting up leader key
-(use-package key-chord
+;;;; essential utils
+(use-package key-chord     ;; my leader key uses key-chord pair
   :commands (key-chord-mode
              key-chord-define-global)
   :custom
@@ -169,10 +169,11 @@
   :commands (hercules-def))
 
 ;;;; outshine
-'(use-package outshine
+(use-package outshine
   :defer t
   :init
   (defvar outline-minor-mode-prefix "\M-#")
+  ;; need to use this form bcos hook name is outshine-mode-hook, not outshine-hook
   :hook (emacs-lisp-mode . outshine-mode)
 )
 

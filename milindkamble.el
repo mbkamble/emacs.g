@@ -34,23 +34,20 @@
 (use-package s :defer t)   ;; string manipulation
 (use-package ht :defer t)  ;; hash table manipulation
 (use-package ts :defer t)  ;; time manipulation
+(use-package seq)          ;; sequence utils
 
 ;; generic and powerful keybinding
 (require 'general)
 
-;; use key-chord as
+;; use key-chord for setting up leader key
 (use-package key-chord
   :commands (key-chord-mode
              key-chord-define-global)
   :custom
   (key-chord-two-key-delay 0.2)
-  :general
   :init
   (key-chord-mode 1)
-  (general-define-key
-   (general-chord ".,") 'counsel-M-x
-   (general-chord ",.") 'counsel-M-x
-   ))
+)
 
 (use-package no-littering
   :commands (no-littering-expand-var-file-name
@@ -86,6 +83,7 @@
   (ivy-mode))
 
 (use-package swiper
+  :after ivy
   :bind* (:map swiper-isearch-map
           ("C-s" . #'ivy-next-line)
           ("C-r" . #'ivy-previous-line)
@@ -126,7 +124,7 @@
               :action (lambda (x) (set-frame-font x)))))
 
 (use-package which-key
-    :defer 1
+    ;; :defer 1
     :blackout ;; prevent mode display in mode-line
     :commands (which-key-mode
                which-key-setup-side-window-right-bottom
@@ -137,8 +135,11 @@
     (which-key-popup-type 'side-window)
     (which-key-side-window-max-height 0.3)
     (which-key-side-window-max-width 0.5)
-    (which-key-idle-delay 0.3)
+    ;; will tweak towards higher values as mbk-bindings get memorized
+    (which-key-idle-delay 0.6)
     (which-key-min-display-lines 7)
+    :init
+    (setq which-key-enable-extended-define-key t)
     :config
     (which-key-mode +1)
     (which-key-setup-side-window-right-bottom)
@@ -166,6 +167,14 @@
   :after hydra
   :demand t
   :commands (hercules-def))
+
+;;;; outshine
+'(use-package outshine
+  :defer t
+  :init
+  (defvar outline-minor-mode-prefix "\M-#")
+  :hook (emacs-lisp-mode . outshine-mode)
+)
 
 (use-package mbk  ;; load lisp/mbk.el
   :load-path "lisp")

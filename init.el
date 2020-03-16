@@ -91,7 +91,7 @@
 
 (use-package lisp-mode
   :config
-  (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
+  ;; (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
   (add-hook 'emacs-lisp-mode-hook 'reveal-mode)
   (defun indent-spaces-mode ()
     (setq indent-tabs-mode nil))

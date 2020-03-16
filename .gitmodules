@@ -60,6 +60,9 @@
 [submodule "key-chord"]
 	path = lib/key-chord
 	url = git@github.com:emacsorphanage/key-chord.git
+[submodule "key-seq"]
+	path = lib/key-seq
+	url = git@github.com:vlevit/key-seq.el.git
 [submodule "libgit"]
 	path = lib/libgit
 	url = git@github.com:magit/libegit2.git
@@ -97,6 +100,12 @@
 [submodule "org-web-tools"]
 	path = lib/org-web-tools
 	url = git@github.com:alphapapa/org-web-tools.git
+[submodule "outorg"]
+	path = lib/outorg
+	url = git@github.com:alphapapa/outorg.git
+[submodule "outshine"]
+	path = lib/outshine
+	url = git@github.com:alphapapa/outshine.git
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git

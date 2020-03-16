@@ -173,9 +173,16 @@
   :defer t
   :init
   (defvar outline-minor-mode-prefix "\M-#")
-  ;; need to use this form bcos hook name is outshine-mode-hook, not outshine-hook
+  ;; need to use cons form bcos hook name is
+  ;; outshine-mode-hook, but pkg name is outshine
   :hook (emacs-lisp-mode . outshine-mode)
 )
 
+;;;; fill-column-indicator aka fci
+(use-package fill-column-indicator
+  :config
+  (define-globalized-minor-mode global-fci-mode
+    fci-mode (lambda () (fci-mode 1)))
+  )
 (use-package mbk  ;; load lisp/mbk.el
   :load-path "lisp")

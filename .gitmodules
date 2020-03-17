@@ -1,5 +1,5 @@
 [borg]
-	pushDefault = locutus
+	pushDefault = mbkamble
 	collective = emacsg
 [submodule "all-the-icons"]
 	path = lib/all-the-icons
@@ -87,7 +87,7 @@
 	url = git@github.com:clemera/objed.git
 [submodule "org"]
 	path = lib/org
-	url = git@code.orgmode.org:bzg/org-mode.git
+	url = https://code.orgmode.org/bzg/org-mode.git
 [submodule "org-bullets"]
 	path = lib/org-bullets
 	url = git@github.com:emacsorphanage/org-bullets.git
@@ -118,6 +118,7 @@
 [submodule "poet-theme"]
 	path = lib/poet-theme
 	url = git@github.com:kunalb/poet.git
+	remote = "mbkamble git@github.com:mbkamble/poet.git"
 [submodule "prescient"]
 	disabled = true
 	path = lib/prescient
@@ -145,6 +146,7 @@
 [submodule "which-key"]
 	path = lib/which-key
 	url = git@github.com:justbur/emacs-which-key.git
+	remote = "mbkamble git@github.com:mbkamble/emacs-which-key.git"
 [submodule "winum"]
 	path = lib/winum
 	url = git@github.com:deb0ch/emacs-winum.git

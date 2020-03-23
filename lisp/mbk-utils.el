@@ -156,4 +156,34 @@ line."
   (message (find-library-name arg)))
 
 
+;; from https://emacs.stackexchange.com/questions/653/how-can-i-find-out-in-which-keymap-a-key-is-bound
+;; How can I find out in which keymap a key is bound?
+(defun my-lookup-key (key)
+  "Search for KEY in all known keymaps."
+  (mapatoms (lambda (ob) (when (and (boundp ob) (keymapp (symbol-value ob)))
+                      (when (functionp (lookup-key (symbol-value ob) key))
+                        (message "%S" ob))))
+            obarray))
+(defun my-lookup-key-prefix (key)
+  "Search for KEY as prefix in all known keymaps."
+  (mapatoms (lambda (ob) (when (and (boundp ob) (keymapp (symbol-value ob)))
+                      (when (let ((m (lookup-key (symbol-value ob) key)))
+                              (and m (or (symbolp m) (keymapp m))))
+                        (message "%S" ob))))
+            obarray))
+
+
+;;; from https://github.com/darkstego/wakib-keys/blob/master/wakib-keys.el
+;; (defun wakib-dynamic-binding (key)
+;;   "Act as KEY in the current context.
+;; This uses an extended menu item's capability of dynamically computing a
+;; definition.  This idea came from general.el"
+;;   `(menu-item
+;; 	 ,""
+;; 	 nil
+;; 	 :filter
+;; 	 ,(lambda (&optional _)
+;;         (wakib-key-binding key))))
+;; '(define-key keymap (kbd "C-d") (wakib-dynamic-binding "C-c")))
+
 (provide 'mbk-utils)

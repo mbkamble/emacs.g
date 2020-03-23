@@ -6,7 +6,7 @@
  '(custom-safe-themes
    (quote
     ("8776539c07241929171541d237c7d892b5e45db5d781095a912c767f97f08770" default)))
- '(fci-rule-color "#444444")
+ '(fci-rule-color "#333333")
  '(ivy-count-format "(%d/%d) ")
  '(ivy-display-style (quote fancy))
  '(ivy-re-builders-alist

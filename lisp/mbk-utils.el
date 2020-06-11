@@ -26,6 +26,21 @@
 
 ;;; Code:
 
+;; get-string-from... got from http://ergoemacs.org/emacs/elisp_read_file_content.html
+;; Read File Content into a String
+(defun get-string-from-file (filePath)
+  "Return filePath's file content."
+  (with-temp-buffer
+    (insert-file-contents filePath)
+    (buffer-string)))
+
+;; Read File Content as List of Lines
+(defun read-lines (filePath)
+  "Return a list of lines of a file at filePath."
+  (with-temp-buffer
+    (insert-file-contents filePath)
+    (split-string (buffer-string) "\n" t)))
+
 (defun mbk--group (source n)
   "Divide SOURCE list in N groups and stack together the last
 elements.
@@ -147,7 +162,7 @@ line."
     (princ (format "%s\n\n" keymap))
     (princ (substitute-command-keys (format "\\{%s}" keymap)))
     (with-current-buffer standard-output ;; temp buffer
-      (setq help-xref-stack-item (list #'my-describe-keymap keymap)))))
+      (setq help-xref-stack-item (list #'mbk-describe-keymap keymap)))))
 
 ;; use counsel-find-library to visit source file for any feature/library
 (defun my-find-library-name (arg)
@@ -185,5 +200,21 @@ line."
 ;; 	 ,(lambda (&optional _)
 ;;         (wakib-key-binding key))))
 ;; '(define-key keymap (kbd "C-d") (wakib-dynamic-binding "C-c")))
+
+(defun ispell-word-then-abbrev (p)
+  "Call `ispell-word'. Then create an abbrev for the correction made.
+With prefix P, create local abbrev. Otherwise it will be global."
+  (interactive "P")
+  (let ((before (downcase (or (thing-at-point 'word) "")))
+        after)
+    (call-interactively 'ispell-word)
+    (setq after (downcase (or (thing-at-point 'word) "")))
+    (unless (string= after before)
+      (define-abbrev
+        (if p local-abbrev-table global-abbrev-table) before after))
+      (message "\"%s\" now expands to \"%s\" %sally."
+               before after (if p "loc" "glob"))))
+
+(define-key ctl-x-map (kbd "C-i") 'ispell-word-then-abbrev)
 
 (provide 'mbk-utils)

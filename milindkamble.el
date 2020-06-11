@@ -26,17 +26,26 @@
 
 ;;; Code:
 
+
+;;;; personal utility funcs
+(use-package mbk-utils :load-path "lisp")
+
 ;;;; personal defaults
 (use-package mbk-defaults
   :load-path "lisp"
   :hook (after-init . mbk-initialize!))
 
+(use-package mbk  ;; load lisp/mbk.el
+  :load-path "lisp")
+
 ;;;; essential utils
 (use-package f :defer t)   ;; file manipulation
-(use-package s :defer t)   ;; string manipulation
+(use-package s)   ;; string manipulation
 (use-package ht :defer t)  ;; hash table manipulation
 (use-package ts :defer t)  ;; time manipulation
 (use-package seq)          ;; sequence utils
+(use-package parson)       ;; json parsing utility
+
 (require 'general)         ;; generic and powerful keybinding
 
 ;;;; essential utils
@@ -59,19 +68,44 @@
 (use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))
 
+(use-package point-stack
+  :config
+  (point-stack-setup-advices))
+
 '(use-package objed
   :defer t)
 
 (use-package blackout
   :demand t)
 
+;; from radian.el
+(defun mbk--do-auto-fill ()
+  "Replacement for `do-auto-fill' that respects `normal-auto-fill-function'.
+The reason we need this is that in order to enable auto-fill
+globally, we are supposed to set the default value of variable
+`auto-fill-function'. However, some major modes set
+`normal-auto-fill-function' (itself normally set to
+`do-auto-fill', which is what we generally set the default value
+of variable `auto-fill-function' to), expecting `auto-fill-mode'
+to be enabled afterwards (which copies the value of
+`normal-auto-fill-function' into variable `auto-fill-function').
+However, since we enable auto-fill globally by means of setting
+variable `auto-fill-function' directly, this setting gets lost.
+The workaround is to set variable `auto-fill-function' globally
+to a function which looks up the value of
+`normal-auto-fill-function' \(generally just `do-auto-fill') and
+calls that. This is a slight inversion of the usual flow of
+control and might make you slightly uncomfortable, but we'll just
+have to live with it :3"
+  (funcall normal-auto-fill-function))
+
+;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-default.html
+(setq-default auto-fill-function #'mbk--do-auto-fill)
+
 (use-package ivy
   :blackout t
   :commands (ivy-mode)
-  :bind* (("s-t" . ivy-switch-buffer)
-          ("s-<backspace>" . ivy-switch-buffer)
-          :map ivy-mode-map
-          ("C-'" . ivy-avy))
+  :bind* (:map ivy-mode-map ("C-'" . ivy-avy))
   :custom
   (ivy-display-style 'fancy)
   (ivy-count-format "(%d/%d) ")
@@ -82,6 +116,8 @@
   :config
   (ivy-mode))
 
+;; based on author's reco. https://oremacs.com/2019/04/07/swiper-isearch/
+;; Once search is begun, C-s and C-r moves fwd/bwd on matching lines (like isearch)
 (use-package swiper
   :after ivy
   :bind* (:map swiper-isearch-map
@@ -89,13 +125,21 @@
           ("C-r" . #'ivy-previous-line)
           ("C-t" . #'ivy-yank-word)
           :map global-map
-          ("M-s" . #'swiper-isearch)))
+          ("C-s" . #'swiper-isearch))
+  ;; thought of using hl-line face for swiper-line-face, but that is
+  ;; used only when hl-line-mode is activated. Don't fancy
+  ;; hl-line-mode at this time. So changing highlight face color in
+  ;; theme itself
+  ;; :custom-face
+  ;; (swiper-line-face    ((t (:inherit hl-line))))
+  )
 
 (use-package counsel
   :commands (counsel-load-theme
              counsel-bookmark
              counsel-yank-pop)
-  :bind* (
+  :bind* (("C-x b" . counsel-switch-buffer)
+          ("C-x C-r" . counsel-buffer-or-recentf)
           ("C-c C-/" . counsel-rg)
           ("M-x" . counsel-M-x))
   :config
@@ -184,5 +228,3 @@
   (define-globalized-minor-mode global-fci-mode
     fci-mode (lambda () (fci-mode 1)))
   )
-(use-package mbk  ;; load lisp/mbk.el
-  :load-path "lisp")

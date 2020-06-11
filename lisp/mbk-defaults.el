@@ -182,6 +182,18 @@ Add a lamdba containing BODY to hook HOOK."
   )
 
 (defun mbk--defaults! ()
+  ;; Follow symlinks when opening files. This has the concrete impact,
+  ;; for instance, that when you edit init.el with M-P e e i and then
+  ;; later do C-x C-f, you will be in the Radian repository instead of
+  ;; your home directory.
+  (setq find-file-visit-truename t)
+
+  ;; Disable the warning "X and Y are the same file" which normally
+  ;; appears when you visit a symlinked file by the same name. (Doing
+  ;; this isn't dangerous, as it will just redirect you to the existing
+  ;; buffer.)
+  (setq find-file-suppress-same-file-warnings t)
+
   ;; disable warnings when opening file or directory with
   ;; local variables set
   (setq-default enable-local-eval t)

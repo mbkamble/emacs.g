@@ -162,6 +162,7 @@
             (define-key map (kbd "M-6") 'winum-select-window-6)
             (define-key map (kbd "M-7") 'winum-select-window-7)
             (define-key map (kbd "M-8") 'winum-select-window-8)
+            (define-key map (kbd "M-9") 'winum-select-window-9)
             map))
     :config
     (defun winum-assign-9-to-calculator-8-to-flycheck-errors ()

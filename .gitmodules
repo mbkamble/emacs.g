@@ -119,6 +119,9 @@
 	path = lib/poet-theme
 	url = git@github.com:kunalb/poet.git
 	remote = "mbkamble git@github.com:mbkamble/poet.git"
+[submodule "point-stack"]
+	path = lib/point-stack
+	url = git@github.com:dgutov/point-stack.git
 [submodule "prescient"]
 	disabled = true
 	path = lib/prescient

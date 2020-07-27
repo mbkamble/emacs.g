@@ -4,6 +4,9 @@
 [submodule "adaptive-wrap"]
 	path = lib/adaptive-wrap
 	url = git@github.com:emacsmirror/adaptive-wrap.git
+[submodule "adoc-mode"]
+	path = lib/adoc-mode
+	url = git@github.com:sensorflo/adoc-mode.git
 [submodule "all-the-icons"]
 	path = lib/all-the-icons
 	url = git@github.com:domtronn/all-the-icons.el.git
@@ -28,6 +31,9 @@
 [submodule "closql"]
 	path = lib/closql
 	url = git@github.com:emacscollective/closql.git
+[submodule "company"]
+	path = lib/company
+	url = git@github.com:company-mode/company-mode.git
 [submodule "company-auctex"]
 	path = lib/company-auctex
 	url = git@github.com:alexeyr/company-auctex.git

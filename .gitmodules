@@ -10,6 +10,9 @@
 [submodule "all-the-icons-dired"]
 	path = lib/all-the-icons-dired
 	url = git@github.com:jtbm37/all-the-icons-dired.git
+[submodule "auctex"]
+	path = lib/auctex
+	url = https://git.savannah.gnu.org/git/auctex.git
 [submodule "auto-compile"]
 	path = lib/auto-compile
 	url = git@github.com:emacscollective/auto-compile.git
@@ -19,9 +22,18 @@
 [submodule "borg"]
 	path = lib/borg
 	url = git@github.com:emacscollective/borg.git
+[submodule "cdlatex"]
+	path = lib/cdlatex
+	url = git@github.com:cdominik/cdlatex.git
 [submodule "closql"]
 	path = lib/closql
 	url = git@github.com:emacscollective/closql.git
+[submodule "company-auctex"]
+	path = lib/company-auctex
+	url = git@github.com:alexeyr/company-auctex.git
+[submodule "company-math"]
+	path = lib/company-math
+	url = git@github.com:vspinu/company-math.git
 [submodule "dash"]
 	path = lib/dash
 	url = git@github.com:magnars/dash.el.git
@@ -36,12 +48,18 @@
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
+[submodule "eshell-z"]
+	path = lib/eshell-z
+	url = git@github.com:xuchunyang/eshell-z.git
 [submodule "f"]
 	path = lib/f
 	url = git@github.com:rejeep/f.el.git
 [submodule "fill-column-indicator"]
 	path = lib/fill-column-indicator
 	url = git@github.com:alpaker/Fill-Column-Indicator.git
+[submodule "fish-mode"]
+	path = lib/fish-mode
+	url = git@github.com:wwwjfy/emacs-fish.git
 [submodule "general"]
 	path = lib/general
 	url = git@github.com:noctuid/general.el.git
@@ -60,6 +78,9 @@
 [submodule "hydra"]
 	path = lib/hydra
 	url = git@github.com:abo-abo/hydra.git
+[submodule "isolate"]
+	path = lib/isolate
+	url = git@github.com:casouri/isolate.git
 [submodule "ivy"]
 	path = lib/ivy
 	url = git@github.com:abo-abo/swiper.git

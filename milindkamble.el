@@ -228,3 +228,8 @@ have to live with it :3"
   (define-globalized-minor-mode global-fci-mode
     fci-mode (lambda () (fci-mode 1)))
   )
+
+;;;; virtual-auto-fill
+(use-package virtual-auto-fill
+  :hook
+  ((text-mode org-mode markdown-mode) . virtual-auto-fill-mode))

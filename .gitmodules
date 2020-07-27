@@ -1,6 +1,9 @@
 [borg]
 	pushDefault = mbkamble
 	collective = emacsg
+[submodule "adaptive-wrap"]
+	path = lib/adaptive-wrap
+	url = git@github.com:emacsmirror/adaptive-wrap.git
 [submodule "all-the-icons"]
 	path = lib/all-the-icons
 	url = git@github.com:domtronn/all-the-icons.el.git
@@ -146,6 +149,12 @@
 [submodule "use-package"]
 	path = lib/use-package
 	url = git@github.com:jwiegley/use-package.git
+[submodule "virtual-auto-fill"]
+	path = lib/virtual-auto-fill
+	url = git@github.com:luisgerhorst/virtual-auto-fill.git
+[submodule "visual-fill-column"]
+	path = lib/visual-fill-column
+	url = git@github.com:joostkremers/visual-fill-column.git
 [submodule "which-key"]
 	path = lib/which-key
 	url = git@github.com:justbur/emacs-which-key.git

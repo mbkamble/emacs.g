@@ -217,4 +217,9 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 (define-key ctl-x-map (kbd "C-i") 'ispell-word-then-abbrev)
 
+(defun unlock-keepass ()
+  "unlock keepass app using dbus"
+  (interactive)
+  (eshell/unlock-keepass))
+
 (provide 'mbk-utils)

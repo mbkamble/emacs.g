@@ -20,6 +20,7 @@
  "ac"	 '(calc :wk "calc")
  "ad"	 '(counsel-dired :wk "dired")
  "ae"	 '(eshell :wk "eshell")
+ "ak"	 '(unlock-keepass :wk "unlock keepass")
  "b"	 '(:prefix-command mbk-buffmap :wk "bufferr")
  "br"	 '(revert-buffer :wk "revert")
  "bk"	 '(kill-buffer :wk "kill")

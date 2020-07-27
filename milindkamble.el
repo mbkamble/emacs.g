@@ -44,7 +44,7 @@
 (use-package ht :defer t)  ;; hash table manipulation
 (use-package ts :defer t)  ;; time manipulation
 (use-package seq)          ;; sequence utils
-(use-package parson)       ;; json parsing utility
+;;(use-package parson)       ;; json parsing utility
 
 (require 'general)         ;; generic and powerful keybinding
 

@@ -15,6 +15,8 @@
      (t . ivy--regex-plus))) t)
  '(ivy-use-virtual-buffers t)
  '(key-chord-two-key-delay 0.2 t)
+ '(abbrev-mode t)
+ '(counsel-mode t)
  '(org-archive-location ".archive_%s::")
  '(org-attach-directory ".attach/" t)
  '(org-attach-id-dir ".attach/" t)

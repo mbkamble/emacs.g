@@ -16,7 +16,7 @@
   (setq inhibit-startup-echo-area-message "mbkamble")
   (setq initial-buffer-choice t)
   (setq initial-scratch-message "")
-  (setq load-prefer-newer t)
+;;  (setq load-prefer-newer t) causes failure to startup due to recursive load
   (scroll-bar-mode 0)
   (tool-bar-mode 0)
   (menu-bar-mode 0))

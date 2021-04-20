@@ -165,7 +165,7 @@ line."
       (setq help-xref-stack-item (list #'mbk-describe-keymap keymap)))))
 
 ;; use counsel-find-library to visit source file for any feature/library
-(defun my-find-library-name (arg)
+(defun mbk-find-library-name (arg)
   "Show the full path of package or library"
   (interactive "Mpackage/library: ")
   (message (find-library-name arg)))
@@ -173,13 +173,13 @@ line."
 
 ;; from https://emacs.stackexchange.com/questions/653/how-can-i-find-out-in-which-keymap-a-key-is-bound
 ;; How can I find out in which keymap a key is bound?
-(defun my-lookup-key (key)
+(defun mbk-lookup-key (key)
   "Search for KEY in all known keymaps."
   (mapatoms (lambda (ob) (when (and (boundp ob) (keymapp (symbol-value ob)))
                       (when (functionp (lookup-key (symbol-value ob) key))
                         (message "%S" ob))))
             obarray))
-(defun my-lookup-key-prefix (key)
+(defun mbk-lookup-key-prefix (key)
   "Search for KEY as prefix in all known keymaps."
   (mapatoms (lambda (ob) (when (and (boundp ob) (keymapp (symbol-value ob)))
                       (when (let ((m (lookup-key (symbol-value ob) key)))
@@ -187,6 +187,12 @@ line."
                         (message "%S" ob))))
             obarray))
 
+(defun mbk-get-keymaps ()
+  (interactive)
+  (mapatoms
+   (lambda (x)
+     (and (keymapp x)
+	      (message (symbol-name x))))))
 
 ;;; from https://github.com/darkstego/wakib-keys/blob/master/wakib-keys.el
 ;; (defun wakib-dynamic-binding (key)
@@ -217,9 +223,40 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 (define-key ctl-x-map (kbd "C-i") 'ispell-word-then-abbrev)
 
+;; Unlock the KeepassXC GUI-app
+;; remotely without explicitly entering the password
+;; Lot of learning and experimenting during development, but the
+;; shortness of code is impressive.
+;; Reading the safebox.gpg file auto decrypts it into plain text
+;; (thanks to EPA). parson-parse converts json-structured
+;; string into hierarchical alist, from which we extract the values of
+;; password and security file. Finally the dbus API is used to execute
+;; the method openDatabase on the keepass service
 (defun unlock-keepass ()
   "unlock keepass app using dbus"
   (interactive)
-  (eshell/unlock-keepass))
+  (require 'parson)
+  (require 'dbus)
+  (let* ((strong-box (expand-file-name
+                      "~/.gnupg/keepass/keepass_safebox.gpg"))
+         (kdbx (expand-file-name
+                "~/.gnupg/keepass/khaazgee_milind_keepass.kdbx"))
+         (pwd-db (parson-parse (get-string-from-file
+                                strong-box)))
+         (kdbx-sec (alist-get "keepasssec" (alist-get "mil" pwd-db nil nil
+                                                     'string=)
+                              nil nil 'string=))
+         (pwd (alist-get "keepasspwd" (alist-get "mil" pwd-db nil nil
+                                                 'string=)
+                         nil nil 'string=)))
+    (cl-assert pwd-db nil "Could not parse strong-box")  ;; pwd-db should be non-nil
+    (cl-assert pwd nil "Password was not found in strong-box")
+    (cl-assert kdbx-sec nil "Keepass security filepath not found in strong-box")
+    (dbus-call-method :session "org.keepassxc.KeePassXC.MainWindow"
+                      "/keepassxc" "org.keepassxc.MainWindow" "openDatabase"
+                      kdbx pwd kdbx-sec
+                      )
+    ))
+
 
 (provide 'mbk-utils)

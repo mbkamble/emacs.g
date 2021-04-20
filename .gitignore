@@ -2,3 +2,6 @@
 /.hive-maint
 /elpa
 /var
+/lisp/experiments
+*.elc
+*.el~

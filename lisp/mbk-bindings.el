@@ -55,6 +55,13 @@
                     (general-chord "uu") #'mbk-keymap)
 (general-emacs-define-key ctl-x-map "o" #'counsel-switch-buffer-other-window)
 
+;; C-x-r-h and C-x-r-v are free. Use it to bind to
+;;calc-grab-sum-across and down respectively
+(general-define-key
+ :keymaps 'ctl-x-r-map
+ "h" 'calc-grab-sum-across
+ "v" 'calc-grab-sum-down)
+
 ;;(add-hook 'which-key-initb-buffer-hook (lambda () (message "adding local-map C-c") (define-key 'mbk-cmap (kbd "c") (cadr (lookup-key (current-local-map) (kbd "C-c")))) ))
 ;;(setq mbk-local-map-ctrl-c (cadr (lookup-key (current-local-map) (kbd "C-c"))))
 ;;(general-emacs-define-key mbk-cmap "c" 'mbk-local-map-ctrl-c)

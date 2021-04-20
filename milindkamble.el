@@ -44,7 +44,7 @@
 (use-package ht :defer t)  ;; hash table manipulation
 (use-package ts :defer t)  ;; time manipulation
 (use-package seq)          ;; sequence utils
-;;(use-package parson)       ;; json parsing utility
+(use-package parson)       ;; json parsing utility
 
 (require 'general)         ;; generic and powerful keybinding
 
@@ -79,28 +79,28 @@
   :demand t)
 
 ;; from radian.el
-(defun mbk--do-auto-fill ()
-  "Replacement for `do-auto-fill' that respects `normal-auto-fill-function'.
-The reason we need this is that in order to enable auto-fill
-globally, we are supposed to set the default value of variable
-`auto-fill-function'. However, some major modes set
-`normal-auto-fill-function' (itself normally set to
-`do-auto-fill', which is what we generally set the default value
-of variable `auto-fill-function' to), expecting `auto-fill-mode'
-to be enabled afterwards (which copies the value of
-`normal-auto-fill-function' into variable `auto-fill-function').
-However, since we enable auto-fill globally by means of setting
-variable `auto-fill-function' directly, this setting gets lost.
-The workaround is to set variable `auto-fill-function' globally
-to a function which looks up the value of
-`normal-auto-fill-function' \(generally just `do-auto-fill') and
-calls that. This is a slight inversion of the usual flow of
-control and might make you slightly uncomfortable, but we'll just
-have to live with it :3"
-  (funcall normal-auto-fill-function))
+;; (defun mbk--do-auto-fill ()
+;;   "Replacement for `do-auto-fill' that respects `normal-auto-fill-function'.
+;; The reason we need this is that in order to enable auto-fill
+;; globally, we are supposed to set the default value of variable
+;; `auto-fill-function'. However, some major modes set
+;; `normal-auto-fill-function' (itself normally set to
+;; `do-auto-fill', which is what we generally set the default value
+;; of variable `auto-fill-function' to), expecting `auto-fill-mode'
+;; to be enabled afterwards (which copies the value of
+;; `normal-auto-fill-function' into variable `auto-fill-function').
+;; However, since we enable auto-fill globally by means of setting
+;; variable `auto-fill-function' directly, this setting gets lost.
+;; The workaround is to set variable `auto-fill-function' globally
+;; to a function which looks up the value of
+;; `normal-auto-fill-function' \(generally just `do-auto-fill') and
+;; calls that. This is a slight inversion of the usual flow of
+;; control and might make you slightly uncomfortable, but we'll just
+;; have to live with it :3"
+;;   (funcall normal-auto-fill-function))
 
-;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-default.html
-(setq-default auto-fill-function #'mbk--do-auto-fill)
+;; ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-default.html
+;; (setq-default auto-fill-function #'mbk--do-auto-fill)
 
 (use-package ivy
   :blackout t
@@ -229,7 +229,9 @@ have to live with it :3"
     fci-mode (lambda () (fci-mode 1)))
   )
 
-;;;; virtual-auto-fill
+;; virtual-auto-fill
 (use-package virtual-auto-fill
   :hook
   ((text-mode org-mode markdown-mode) . virtual-auto-fill-mode))
+
+;(use-package speed-type)

@@ -19,7 +19,8 @@
 ;;  (setq load-prefer-newer t) causes failure to startup due to recursive load
   (scroll-bar-mode 0)
   (tool-bar-mode 0)
-  (menu-bar-mode 0))
+  (menu-bar-mode 0)
+  )
 
 (progn ;    `borg'
   (add-to-list 'load-path (expand-file-name "lib/borg" user-emacs-directory))
